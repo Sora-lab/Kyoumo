@@ -1,0 +1,24 @@
+{
+  "name": "basic",
+  "version": "0.0.1",
+  "description": "just another todo list",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akiyo Marukawa",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^7.7.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-firebaseui": "^4.1.0",
+    "react-scripts": "^3.3.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
