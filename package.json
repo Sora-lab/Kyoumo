@@ -2,7 +2,7 @@
   "name": "basic",
   "version": "0.0.1",
   "description": "just another todo list",
-  "main": "index.tsx",
+  "main": "src/index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,11 @@
     "react-scripts": "^3.3.0"
   },
   "devDependencies": {
+    "@types/node": "^13.5.0",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "css-loader": "^3.4.2",
+    "style-loader": "^1.1.3",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",

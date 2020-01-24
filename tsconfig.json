@@ -1,11 +1,21 @@
 {
 	"compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "outDir": "./dist/",
     "sourceMap": true,
-		"noImplicitAny": true,
-		"module": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+		"module": "esnext",
 		"target": "es5",
 		"jsx": "react",
-		"allowJs": true
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
 	}
 }
