@@ -58,7 +58,6 @@ class Auth extends Component<any, State> {
       );
     }
     const user = firebase.auth()?.currentUser;
-    
     return (
       <main role="main" className='main' style={{width: '40vw', margin: 'auto'}}>
         <Header />

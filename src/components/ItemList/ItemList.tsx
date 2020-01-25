@@ -12,10 +12,13 @@ class ItemList extends Component<any, any>{
   todayItems: any;
   db = firebase.firestore();
   userId = firebase.auth()?.currentUser?.uid;
-  items = this.db.collection("users");
+  items = this.db.collection("users").doc(this.userId).collection('items');
+  // query = this.items.where("end", ">=", Math.round((Date.now()) / 1000) )
+  query = this.db.collection("users").doc(this.userId).collection('items').where("end", ">=", 0 )
   componentDidMount(){
-    this.items.get().then((doc:any)=>
+    this.query.get().then((doc:any)=>{
         console.log(doc)
+      }
     )
   
   }
