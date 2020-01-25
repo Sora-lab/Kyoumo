@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import SignInScreen from './Login';
+import Auth from './Auth/Auth';
 class App extends Component {
 
   render(){
     return(
-      <SignInScreen/>
+      <Auth />
     )
   }
 }
