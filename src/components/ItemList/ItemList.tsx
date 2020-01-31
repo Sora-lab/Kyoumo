@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
+import ItemForm from '../ItemForm';
+import {AppBar} from '../AppBar/AppBar';
 import {Item} from '../../API/query';
 
 interface State {
   itemArray: Array<Item> | undefined;
+  isShown: boolean;
 }
 
 class ItemList extends Component<any, State> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-      itemArray: undefined
+      itemArray: undefined,
+      isShown: false,
     }
 	}
 	db = firebase.firestore();
@@ -42,23 +46,47 @@ class ItemList extends Component<any, State> {
 			.catch(function(error) {
 				console.log('Error getting document:', error);
 			});
-	}
+  }
+  
+  showItemForm(){
+    if(!this.state.isShown){
+      console.log(this.state.isShown)
+      this.setState({isShown: true})
+    } else {
+      this.setState({isShown: false})
+    }
+  }
+
+  leftIconOnClick(){
+    if(this.state.isShown){
+      console.log(this.state.isShown)
+      this.setState({isShown: false})
+    }
+  }
 	render() {
 		return (
-			<div>
-				<div>{this.state.itemArray?.map((item:any)=>{
+			<>
+      	<AppBar layout={this.state.isShown ?  'foo' : 'defalut'} leftIconOnClick={()=>this.leftIconOnClick()}/>
+        <div id='item-dialog'
+          style={this.state.isShown ? {display: 'unset'} : {display: 'none'}}>
+          <ItemForm />
+        </div>
+				<div id='item-list'>{this.state.itemArray?.map((item:any)=>{
           return (
-            <>
+            <div key={item['title']}>
             <p>{item['title']}</p>
             <p>{item['note']}</p>
             <p>{item['start']}</p>
-            </>
+            </div>
           )
-        })}</div>
+        })}
+          <button className="fab-add" onClick={()=>this.showItemForm()}><i className="material-icons">add</i></button>
+        </div>
 				<div>
 					<a onClick={() => firebase.auth().signOut()}>Sign-out</a>
 				</div>
-			</div>
+        
+			</>
 		);
 	}
 }

@@ -5,6 +5,8 @@ import App from './components/App';
 
 import * as firebase from 'firebase/app';
 
+import './index.css'
+
 const firebaseConfig = {
   apiKey: "AIzaSyDK_O9itKDbzUCP0cXNmUea3PdPCLgoDWE",
   authDomain: "basic-a6bf2.firebaseapp.com",
