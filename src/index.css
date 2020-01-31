@@ -41,10 +41,10 @@ button {
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
 		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 	background-color: var(--primary);
-  color: white;
-  position: fixed;
-  right: 50%;
-  bottom: 20px;
+	color: white;
+	position: fixed;
+	right: 50%;
+	bottom: 20px;
 }
 .vh-100 {
 	height: 100vh;
@@ -73,6 +73,9 @@ button {
 }
 .flex {
 	display: flex;
+}
+.align-items-center {
+	align-items: center;
 }
 .space-between {
 	justify-content: space-between;
@@ -130,7 +133,7 @@ button {
 		background-color: #2a5865;
 	}
 }
-.HAHAHAH {
+.shadow {
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
 		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
