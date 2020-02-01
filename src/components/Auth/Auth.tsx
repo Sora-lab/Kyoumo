@@ -3,11 +3,8 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import 'firebase/auth';
 
-import ItemList from '../ItemList/ItemList';
-import { Header } from '../Header/Header';
-
 interface State {
-	isSignedIn: boolean | undefined;
+	isSignedIn: boolean | null;
 }
 
 class Auth extends Component<any, State> {
@@ -15,23 +12,10 @@ class Auth extends Component<any, State> {
 		super(props);
 		// The component's Local state.
 		this.state = {
-			isSignedIn: false, // Local signed-in state.
+			isSignedIn: null, // Local signed-in state.
 		};
 	}
-	// Configure FirebaseUI.
-	uiConfig = {
-		// Popup signin flow rather than redirect flow.
-		signInFlow: 'popup',
-		// We will display Google and Facebook as auth providers.
-		signInOptions: [
-			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-			firebase.auth.EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,
-		],
-		callbacks: {
-			// Avoid redirects after sign-in.
-			signInSuccessWithAuthResult: () => false,
-		},
-	};
+	
 
 	// Listen to the Firebase Auth state and set the local state.
 	componentDidMount() {
@@ -45,28 +29,28 @@ class Auth extends Component<any, State> {
 
 	unregisterAuthObserver(): void {}
 
-	render() {
-		console.log(this.state.isSignedIn);
-		if (this.state.isSignedIn === undefined) {
-			return <div> loading ...</div>;
-		} else if (this.state.isSignedIn === false) {
-			return (
-				<div>
-					<h1>My App</h1>
-					<p>Please sign-in:</p>
-					<StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
-				</div>
-			);
-		} else {
-			const user = firebase.auth()?.currentUser;
-			return (
-				<main role="main" className="main" style={{ width: '40vw', margin: 'auto' }}>
-					<Header />
-					<ItemList />
-				</main>
-			);
-		}
-	}
+	// render() {
+	// 	console.log(this.state.isSignedIn);
+	// 	if (this.state.isSignedIn === undefined) {
+	// 		return <div> loading ...</div>;
+	// 	} else if (this.state.isSignedIn === false) {
+	// 		return (
+	// 			<div>
+	// 				<h1>My App</h1>
+	// 				<p>Please sign-in:</p>
+	// 				<StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+	// 			</div>
+	// 		);
+	// 	} else {
+	// 		const user = firebase.auth()?.currentUser;
+	// 		return (
+	// 			<main role="main" className="main" style={{ width: '40vw', margin: 'auto' }}>
+	// 				<AppBar layout={"default"}/>
+	// 				<ItemList />
+	// 			</main>
+	// 		);
+	// 	}
+	// }
 }
 
 export default Auth;

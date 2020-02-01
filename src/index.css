@@ -1,0 +1,143 @@
+/* TODO: use Sass */
+:root {
+	--primary: #90bdc2;
+	--secondary: #2a5865;
+	--success: #ffa600;
+	--info: #17a2b8;
+	--warning: #ffc107;
+	--danger: #d96704;
+	--light: #f0ede8;
+	--dark: #403b34;
+	font-family: 'Roboto', sans-serif;
+}
+body {
+	margin: 0px;
+	font-size: 16px;
+}
+button {
+	padding: 0px;
+	font-size: 16px;
+}
+button:focus {
+	outline: none;
+}
+
+@media only screen and (max-width: 480px) {
+	.main {
+		width: 100%;
+		margin: auto;
+	}
+}
+
+@media only screen and (min-width: 481px) {
+	.main {
+		width: 445px;
+		margin: auto;
+	}
+}
+
+.fab-add {
+	border: 1px solid var(--primary);
+	border-radius: 50%;
+	padding: 0px;
+	height: 40px;
+	width: 40px;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+	background-color: var(--primary);
+	color: white;
+	position: fixed;
+	right: 50%;
+	bottom: 20px;
+}
+.vh-100 {
+	height: 100vh;
+}
+.width-100 {
+	width: 100%;
+}
+.relative {
+	position: relative;
+}
+.fixed {
+	position: fixed;
+}
+.top0 {
+	top: 0px;
+}
+
+.no-border {
+	border: none;
+}
+.no-border:focus {
+	outline: none;
+}
+.no-background {
+	background: none;
+}
+.flex {
+	display: flex;
+}
+.align-items-center {
+	align-items: center;
+}
+.space-between {
+	justify-content: space-between;
+}
+.primary {
+	background-color: var(--primary);
+}
+.white {
+	color: white;
+}
+
+/* loading waiting ball */
+.bounce-ball {
+	align-self: flex-end;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	background-color: #f44336;
+	height: 200px;
+	margin: 0 auto 0 auto;
+	transform-origin: bottom;
+	width: 200px;
+	border-radius: 50%;
+}
+.bounce-6 {
+	animation-name: bounce-6;
+	animation-timing-function: ease;
+}
+@keyframes bounce-6 {
+	0% {
+		transform: scale(1, 1) translateY(0);
+		background-color: #ffa600ed;
+	}
+	10% {
+		transform: scale(1.1, 0.9) translateY(0);
+		background-color: #d96704;
+	}
+	30% {
+		transform: scale(0.9, 1.1) translateY(-100px);
+		background-color: #f0ede8;
+	}
+	50% {
+		transform: scale(1.05, 0.95) translateY(0);
+		background-color: #90bdc2;
+	}
+	57% {
+		transform: scale(1, 1) translateY(-7px);
+		background-color: #2a5865;
+	}
+	64% {
+		transform: scale(1, 1) translateY(0);
+		background-color: #2a5865;
+	}
+	100% {
+		transform: scale(1, 1) translateY(0);
+		background-color: #2a5865;
+	}
+}
+.shadow {
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}

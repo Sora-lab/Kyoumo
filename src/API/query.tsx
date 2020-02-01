@@ -13,7 +13,7 @@ export interface Item {
 	type?: string;
 }
 
-class QueryItems {
+export class QueryItems {
 	db = firebase.firestore();
 	userId = firebase.auth()?.currentUser?.uid;
 	// items = this.db
