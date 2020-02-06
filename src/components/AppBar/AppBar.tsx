@@ -48,7 +48,7 @@ export function AppBar(props: Props) {
 
   return (
     <header
-      className="shadow primary white flex align-items-center space-between"
+      className="shadow secondary white flex align-items-center space-between"
       style={{ padding: '8px 12px', height: '29px', alignItems: 'center' }}
     >
       <section className="flex align-items-center">

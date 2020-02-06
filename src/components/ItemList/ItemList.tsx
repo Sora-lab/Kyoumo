@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
+// components 
 import AddForm from '../AddForm';
 import { AppBar } from '../AppBar/AppBar';
+import {ItemCard} from './ItemCard';
 
 export interface Item {
   title: string;
@@ -71,21 +73,28 @@ class ItemList extends Component<any, State> {
   // search and more_vert 
   rightIconsOnClick() { }
 
+  closeAddForm() {
+    this.setState({ isShown: false })
+  }
+
   render() {
     return (
       <>
         <div id='item-dialog'
           style={this.state.isShown ? { display: 'unset' } : { display: 'none' }}>
-          <AddForm closeButton={this.leftIconOnClick.bind(this)} />
+          <AddForm closeButton={this.closeAddForm.bind(this)} />
         </div>
         <AppBar layout='defalut' leftIconOnClick={this.leftIconOnClick.bind(this)} rightIconsOnClick={this.rightIconsOnClick.bind(this)} />
-        <div id='item-list'>{this.state.itemArray?.map((item: any) => {
+        <div id='item-list'>{this.state.itemArray?.map((item: any, index) => {
           return (
-            <div key={item['title']}>
+            <>
+            <div key={index}>
               <p>{item['title']}</p>
               <p>{item['note']}</p>
               <p>{item['start']}</p>
             </div>
+            <ItemCard key={index} item={item} />
+            </>
           )
         })}
           <button className="fab-add" onClick={() => this.showAddForm()}><i className="material-icons">add</i></button>
