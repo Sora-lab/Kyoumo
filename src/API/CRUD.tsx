@@ -1,13 +1,23 @@
-import { Item } from '../API/query';
+// Item Data interface 
+import { Item } from '../components/ItemList/ItemList';
+
+// firebase
 import firebase from 'firebase';
 import 'firebase/firestore';
 
-const db = firebase.firestore();
-const userId:string = firebase.auth()?.currentUser?.uid;
+import {InitializeFireBaseApp} from '../utilities/initializeFirebaseApp';
+
+if (!firebase.apps.length) {
+  const KyomoApp = new InitializeFireBaseApp;
+  KyomoApp.initializeApp();
+}
 
 // find user and add item
-export function addItem(data:Item) {
-
+export function addItem(data: Item) {
+  const db = firebase.firestore();
+  const userId: string | undefined = firebase.auth()?.currentUser?.uid;
+// db.collection('users').doc(userId).get().then((doc: any) => {
+//   console.log(doc);})
   db.collection('users')
     .doc(userId)
     .collection('items')
@@ -17,6 +27,6 @@ export function addItem(data:Item) {
 
 }
 
-export function updateIteam(data) {
+export function updateIteam(data: any) {
 
 }

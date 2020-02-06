@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 // Components
-import Auth from './Auth/Auth';
 import ItemList from './ItemList/ItemList';
-import { AppBar } from './AppBar/AppBar';
+import Auth from './Auth/Auth';
 
 // firebase
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import 'firebase/auth';
-
 class App extends Auth {
 	// Configure FirebaseUI.
 	uiConfig = {

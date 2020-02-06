@@ -2,93 +2,101 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
-import ItemForm from '../ItemForm';
-import {AppBar} from '../AppBar/AppBar';
-import {Item} from '../../API/query';
+import AddForm from '../AddForm';
+import { AppBar } from '../AppBar/AppBar';
 
+export interface Item {
+  title: string;
+  type?: string;
+  start?: number;
+  end?: number;
+  note?: string;
+}
 interface State {
   itemArray: Array<Item> | undefined;
   isShown: boolean;
 }
 
 class ItemList extends Component<any, State> {
-	constructor(props: any) {
-		super(props);
-		this.state = {
+  constructor(props: any) {
+    super(props);
+    this.state = {
       itemArray: undefined,
       isShown: false,
     }
-	}
-	db = firebase.firestore();
-	userId = firebase.auth()?.currentUser?.uid;
-	// items = this.db
-	// 	.collection('users')
-	// 	.doc(this.userId)
-	// 	.collection('items');
-	query = this.db
-		.collection('users')
-		.doc(this.userId)
-		.collection('items')
-		.where('end', '>', 0);
-	componentDidMount() {
+  }
+  // set firestore database
+  db = firebase.firestore();
+  userId = firebase.auth()?.currentUser?.uid;
 
-    let query:Array<Item> = [];
-		this.query
-			.get()
-			.then((doc: any) => {
-				console.log(doc);
-				doc.forEach((ele: any) => {
+  // set firestore query
+  query = this.db
+    .collection('users')
+    .doc(this.userId)
+    .collection('items')
+    .where('end', '>', 0);
+
+  componentDidMount() {
+
+    let query: Array<Item> = [];
+    this.query
+      .get()
+      .then((doc: any) => {
+        console.log(doc);
+        doc.forEach((ele: any) => {
           console.log(ele.data());
           query.push(ele.data() as Item);
         });
-        this.setState({itemArray: query})
-			})
-			.catch(function(error) {
-				console.log('Error getting document:', error);
-			});
+        this.setState({ itemArray: query })
+      })
+      .catch(function (error) {
+        console.log('Error getting document:', error);
+      });
   }
-  
-  showItemForm(){
-    if(!this.state.isShown){
-      console.log(this.state.isShown)
-      this.setState({isShown: true})
+
+  // taggle add form visual state
+  showAddForm() {
+    if (!this.state.isShown) {
+      this.setState({ isShown: true })
     } else {
-      this.setState({isShown: false})
+      this.setState({ isShown: false })
     }
   }
 
-  leftIconOnClick(){
-    if(this.state.isShown){
-      console.log(this.state.isShown)
-      this.setState({isShown: false})
-    }
+  // hamburger
+  leftIconOnClick() {
+    //TODO: open and close hamburger menu
   }
-	render() {
-		return (
-			<>
-      	<AppBar layout={this.state.isShown ?  'foo' : 'defalut'} leftIconOnClick={()=>this.leftIconOnClick()}/>
+
+  // search and more_vert 
+  rightIconsOnClick() { }
+
+  render() {
+    return (
+      <>
         <div id='item-dialog'
-          style={this.state.isShown ? {display: 'unset'} : {display: 'none'}}>
-          <ItemForm />
+          style={this.state.isShown ? { display: 'unset' } : { display: 'none' }}>
+          <AddForm closeButton={this.leftIconOnClick.bind(this)} />
         </div>
-				<div id='item-list'>{this.state.itemArray?.map((item:any)=>{
+        <AppBar layout='defalut' leftIconOnClick={this.leftIconOnClick.bind(this)} rightIconsOnClick={this.rightIconsOnClick.bind(this)} />
+        <div id='item-list'>{this.state.itemArray?.map((item: any) => {
           return (
             <div key={item['title']}>
-            <p>{item['title']}</p>
-            <p>{item['note']}</p>
-            <p>{item['start']}</p>
+              <p>{item['title']}</p>
+              <p>{item['note']}</p>
+              <p>{item['start']}</p>
             </div>
           )
         })}
-          <button className="fab-add" onClick={()=>this.showItemForm()}><i className="material-icons">add</i></button>
+          <button className="fab-add" onClick={() => this.showAddForm()}><i className="material-icons">add</i></button>
         </div>
-				<div>
-					<a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-				</div>
-        
-			</>
-		);
-	}
+        <div>
+          <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
+        </div>
+
+      </>
+    );
+  }
 }
 
 export default ItemList;

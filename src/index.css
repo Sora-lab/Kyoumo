@@ -35,7 +35,11 @@ button:focus {
 		margin: auto;
 	}
 }
-
+.item-dialog{
+	position: fixed;
+	top: 0px;
+	width: 100%;
+}
 .fab-add {
 	border: 1px solid var(--primary);
 	border-radius: 50%;
