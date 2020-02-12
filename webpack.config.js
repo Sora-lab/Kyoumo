@@ -4,7 +4,7 @@ const dir = path.resolve(__dirname);
 module.exports = {
   mode: 'development',
   entry: dir + '/src/index.tsx',
-  devtool: 'eval-source-map',
+  devtool: 'inline-cheap-source-map',
 	module: {
 		rules: [
 			{

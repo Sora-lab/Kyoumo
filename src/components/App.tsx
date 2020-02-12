@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import ItemList from './ItemList/ItemList';
+import Container from './Container';
 import Auth from './Auth/Auth';
 
 // firebase
@@ -27,7 +27,7 @@ class App extends Auth {
 		if (this.state.isSignedIn) {
 			return (
 				<main role="main" className="main">
-					<ItemList />
+					<Container />
 				</main>
 			);
 		} else if(this.state.isSignedIn === null){

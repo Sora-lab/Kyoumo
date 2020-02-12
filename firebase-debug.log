@@ -1,26 +1,26 @@
-[debug] [2020-02-06T03:35:21.630Z] ----------------------------------------------------------------------
-[debug] [2020-02-06T03:35:21.632Z] Command:       /usr/local/Cellar/node/12.12.0/bin/node /usr/local/bin/firebase serve --only hosting
-[debug] [2020-02-06T03:35:21.632Z] CLI Version:   7.12.1
-[debug] [2020-02-06T03:35:21.632Z] Platform:      darwin
-[debug] [2020-02-06T03:35:21.632Z] Node Version:  v12.12.0
-[debug] [2020-02-06T03:35:21.633Z] Time:          Wed Feb 05 2020 19:35:21 GMT-0800 (Pacific Standard Time)
-[debug] [2020-02-06T03:35:21.633Z] ----------------------------------------------------------------------
-[debug] [2020-02-06T03:35:21.633Z] 
-[debug] [2020-02-06T03:35:21.647Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-02-06T03:35:21.647Z] > authorizing via signed-in user
-[debug] [2020-02-06T03:35:21.647Z] [iam] checking project basic-a6bf2 for permissions ["firebase.projects.get"]
-[debug] [2020-02-06T03:35:21.649Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2020-02-06T03:35:21.649Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2020-02-11T05:29:53.374Z] ----------------------------------------------------------------------
+[debug] [2020-02-11T05:29:53.375Z] Command:       /usr/local/Cellar/node/12.12.0/bin/node /usr/local/bin/firebase serve --only hosting
+[debug] [2020-02-11T05:29:53.376Z] CLI Version:   7.12.1
+[debug] [2020-02-11T05:29:53.376Z] Platform:      darwin
+[debug] [2020-02-11T05:29:53.376Z] Node Version:  v12.12.0
+[debug] [2020-02-11T05:29:53.376Z] Time:          Mon Feb 10 2020 21:29:53 GMT-0800 (Pacific Standard Time)
+[debug] [2020-02-11T05:29:53.376Z] ----------------------------------------------------------------------
+[debug] [2020-02-11T05:29:53.376Z] 
+[debug] [2020-02-11T05:29:53.385Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-11T05:29:53.385Z] > authorizing via signed-in user
+[debug] [2020-02-11T05:29:53.385Z] [iam] checking project basic-a6bf2 for permissions ["firebase.projects.get"]
+[debug] [2020-02-11T05:29:53.386Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-02-11T05:29:53.387Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  <request body omitted>
-[debug] [2020-02-06T03:35:21.816Z] <<< HTTP RESPONSE 200
-[debug] [2020-02-06T03:35:21.830Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/basic-a6bf2:testIamPermissions  
+[debug] [2020-02-11T05:29:53.527Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T05:29:53.546Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/basic-a6bf2:testIamPermissions  
 
-[debug] [2020-02-06T03:35:22.103Z] <<< HTTP RESPONSE 200
-[debug] [2020-02-06T03:35:22.104Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/basic-a6bf2  
+[debug] [2020-02-11T05:29:53.782Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T05:29:53.783Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/basic-a6bf2  
  
-[debug] [2020-02-06T03:35:22.332Z] <<< HTTP RESPONSE 200
-[debug] [2020-02-06T03:35:22.333Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/basic-a6bf2/webApps/-/config  
+[debug] [2020-02-11T05:29:54.027Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T05:29:54.029Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/basic-a6bf2/webApps/-/config  
  
-[debug] [2020-02-06T03:35:23.011Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T05:29:54.392Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: dist
 [info] ✔  hosting: Local server: http://localhost:5000

@@ -150,6 +150,8 @@ button:focus {
 }
 
 .item-card {
+  margin: 5px auto;
+  width: 98%;
 	border-radius: 4px;
 	display: flex;
 	flex-direction: column;
@@ -180,5 +182,5 @@ button:focus {
 	opacity: 0.6;
 }
 .item-card .card-text-wrapper {
-  padding: 0.5em;
+  padding: 0.25em;
 }

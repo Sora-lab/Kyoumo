@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// component 
-import {AppBar} from './AppBar/AppBar';
 
 // Item data type 
 import {Item} from './ItemList/ItemList';
@@ -48,13 +46,9 @@ class AddForm extends Component<Props, State> {
 
   render(){
     return(
-      <>
-      <AppBar layout={'addItemForm'} leftIconOnClick={this.props.closeButton} rightIconsOnClick={(e)=>{this.saveItem(e)}}/>
-
       <form name="itemform" className="vh-100">
         <input type="text" id="title" name="title" required minLength={4} placeholder='New task/event/reminder/routine'/>
       </form>
-      </>
     )
   }
 }

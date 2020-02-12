@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+
+// firebase
 import firebase from 'firebase';
 import 'firebase/firestore';
 
 // components 
-import AddForm from '../AddForm';
-import { AppBar } from '../AppBar/AppBar';
-import {ItemCard} from './ItemCard';
+import { ItemCard } from './ItemCard';
+
 
 export interface Item {
   title: string;
@@ -16,95 +17,43 @@ export interface Item {
 }
 interface State {
   itemArray: Array<Item> | undefined;
-  isShown: boolean;
+  isLoading: boolean;
+}
+interface Props {
+  itemArray: Array<Item> | undefined;
+  isLoading: boolean;
 }
 
-class ItemList extends Component<any, State> {
+class ItemList extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      itemArray: undefined,
-      isShown: false,
-    }
-  }
-  // set firestore database
-  db = firebase.firestore();
-  userId = firebase.auth()?.currentUser?.uid;
-
-  // set firestore query
-  query = this.db
-    .collection('users')
-    .doc(this.userId)
-    .collection('items')
-    .where('end', '>', 0);
-
-  componentDidMount() {
-
-    let query: Array<Item> = [];
-    this.query
-      .get()
-      .then((doc: any) => {
-        console.log(doc);
-        doc.forEach((ele: any) => {
-          console.log(ele.data());
-          query.push(ele.data() as Item);
-        });
-        this.setState({ itemArray: query })
-      })
-      .catch(function (error) {
-        console.log('Error getting document:', error);
-      });
-  }
-
-  // taggle add form visual state
-  showAddForm() {
-    if (!this.state.isShown) {
-      this.setState({ isShown: true })
-    } else {
-      this.setState({ isShown: false })
+      itemArray: this.props.itemArray || undefined,
+      isLoading: false,
     }
   }
 
-  // hamburger
-  leftIconOnClick() {
-    //TODO: open and close hamburger menu
-  }
-
-  // search and more_vert 
-  rightIconsOnClick() { }
-
-  closeAddForm() {
-    this.setState({ isShown: false })
-  }
 
   render() {
-    return (
-      <>
-        <div id='item-dialog'
-          style={this.state.isShown ? { display: 'unset' } : { display: 'none' }}>
-          <AddForm closeButton={this.closeAddForm.bind(this)} />
-        </div>
-        <AppBar layout='defalut' leftIconOnClick={this.leftIconOnClick.bind(this)} rightIconsOnClick={this.rightIconsOnClick.bind(this)} />
-        <div id='item-list'>{this.state.itemArray?.map((item: any, index) => {
+    if (this.props.isLoading) {
+      return (
+        <>
+          <p>loading....</p>
+          <div style={{ marginTop: '50px' }}>
+            {/* TODO: make this much smaller!! */}
+            <div className='bounce-6 bounce-ball'></div>
+          </div>
+        </>)
+    } else {
+      return (
+        <div id='item-list'>{this.props.itemArray?.map((item: any, index) => {
           return (
-            <>
-            <div key={index}>
-              <p>{item['title']}</p>
-              <p>{item['note']}</p>
-              <p>{item['start']}</p>
-            </div>
             <ItemCard key={index} item={item} />
-            </>
           )
         })}
-          <button className="fab-add" onClick={() => this.showAddForm()}><i className="material-icons">add</i></button>
         </div>
-        <div>
-          <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
-        </div>
-
-      </>
-    );
+      );
+    }
   }
 }
 
