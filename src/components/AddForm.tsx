@@ -53,6 +53,7 @@ export class AddForm extends Component<Props, State> {
     // addItem(newItem);
     updateIteam("foo")
     //clear the form
+    formEl?.reset();
   }
 
   render() {
