@@ -33,7 +33,6 @@ class ItemList extends Component<Props, State> {
     }
   }
 
-
   render() {
     if (this.props.isLoading) {
       return (

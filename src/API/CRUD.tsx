@@ -28,5 +28,9 @@ export function addItem(data: Item) {
 }
 
 export function updateIteam(data: any) {
+  const db = firebase.firestore();
+  const userId: string | undefined = firebase.auth()?.currentUser?.uid;
 
+  db.collection('users').doc(userId).get().then((doc: any) => {
+      console.log(doc);})
 }
