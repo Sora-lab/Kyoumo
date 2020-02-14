@@ -48,7 +48,9 @@ class Container extends Component<any, any> {
     }
   }
 
-  // set firestore database
+  /**
+   * set firestore database
+   */
   db = firebase.firestore();
   userId = firebase.auth()?.currentUser?.uid;
   userDoc = this.db.collection('users').doc(this.userId)
@@ -56,7 +58,6 @@ class Container extends Component<any, any> {
   /**
    * set firestore query for default list
    */
-
   queryToday = this.userDoc
     .collection('items')
     .where('end', '>', 0);
