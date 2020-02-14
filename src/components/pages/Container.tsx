@@ -17,9 +17,9 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 // components
-import ItemList from './ItemList/ItemList';
+import ItemList from '../ItemList/ItemList';
 import { AddForm } from './AddForm';
-import { AppBar } from './AppBar/AppBar';
+import { AppBar } from '../AppBar/AppBar';
 const newAddForm = new AddForm('foo');
 
 // interface 

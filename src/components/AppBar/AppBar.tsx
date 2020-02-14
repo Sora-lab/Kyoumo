@@ -4,7 +4,7 @@ import React from 'react';
 import { IconButton, ActionButton } from '../Buttons/Buttons';
 
 // interfaces
-import {Layout} from '../Container';
+import {Layout} from '../pages/Container';
 
 interface Props {
   layout: Layout;

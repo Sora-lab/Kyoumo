@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
 // Item data type 
-import { Item } from './ItemList/ItemList';
+import { Item } from '../ItemList/ItemList';
 
 // CURD API 
-import { addItem, updateIteam } from '../API/CRUD';
-
+import { addItem, updateIteam } from '../../API/CRUD';
 
 // utility functions
-import { setProperty } from '../utilities/Object';
+import { setProperty } from '../../utilities/Object';
 
 interface Props {}
 
@@ -37,19 +36,19 @@ export class AddForm extends Component<Props, State> {
 
   saveItem(e: any) {
     // e.preventDefault()
-    console.log(document.forms.item(0));
+    // console.log(document.forms.item(0));
     const formEl = document.forms.item(0);
     const formData = formEl && new FormData(formEl);
     const newItem: Item = { title: '' }
     if (formData !== null) {
       for (const pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
+        // console.log(pair[0] + ', ' + pair[1]);
         const key = pair[0] as keyof Item;
         const value = pair[1] as string;
         setProperty(newItem, key, value)
       }
     }
-    console.log(newItem)
+    // console.log(newItem)
     // addItem(newItem);
     updateIteam("foo")
     //clear the form

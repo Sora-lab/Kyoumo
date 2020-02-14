@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import Container from './Container';
+import Container from './pages/Container';
 import Auth from './Auth/Auth';
 
 // firebase

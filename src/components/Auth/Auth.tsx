@@ -14,18 +14,26 @@ class Auth extends Component<any, State> {
 		};
 	}
 
+
+
 	// Listen to the Firebase Auth state and set the local state.
 	componentDidMount() {
-		this.unregisterAuthObserver = 
+		console.log("Auth componentDidMount")
+		this.unregisterAuthObserver =
 			firebase.auth().onAuthStateChanged(user => this.setState({ isSignedIn: !!user }));
+	}
+
+	componentDidUpdate(prevProps: any) {
+		console.log("Auth componentDidUpdate")
 	}
 
 	// Make sure we un-register Firebase observers when the component unmounts.
 	componentWillUnmount() {
+		console.log("Auth componentWillMount")
 		this.unregisterAuthObserver();
 	}
 
-	unregisterAuthObserver(): void {}
+	unregisterAuthObserver(): void { }
 
 }
 

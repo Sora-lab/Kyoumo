@@ -33,6 +33,16 @@ class ItemList extends Component<Props, State> {
     }
   }
 
+  componentDidMount(){
+    console.log("ItemList componentDidMount")
+  }
+  componentDidUpdate(prevProps:any){
+    console.log("ItemList componentDidUpdate")
+  }
+  componentWillMount(){
+    console.log("ItemList componentWillMount")
+  }
+
   render() {
     if (this.props.isLoading) {
       return (
