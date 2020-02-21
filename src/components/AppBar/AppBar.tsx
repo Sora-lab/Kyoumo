@@ -15,7 +15,6 @@ interface Props {
 
 
 export function AppBar(props: Props) {
-  const today = new Date();
   let toolbar: JSX.Element = <></>;
   let menuIcon: JSX.Element = <></>;
 
@@ -64,8 +63,8 @@ export function AppBar(props: Props) {
     >
       <section className="flex align-items-center">
         {menuIcon}
-        <span style={{ paddingLeft: '1rem' }}>{'My List '}{today.toLocaleDateString()}</span>
       </section>
+        <p style={{ paddingLeft: '1rem', textAlign: 'center'}}>{'My List'}</p>
       <section role="toolbar ">
         {toolbar}
       </section>

@@ -10,17 +10,11 @@
 	--dark: #403b34;
 	font-family: 'Roboto', sans-serif;
 }
+/* overwrite generic */
 body {
 	margin: 0px;
 	font-size: 16px;
 	background-color: var(--primary);
-}
-button {
-	padding: 0px;
-	font-size: 16px;
-}
-button:focus {
-	outline: none;
 }
 
 .main {
@@ -28,6 +22,30 @@ button:focus {
 	height: 100vh;
 }
 
+button {
+	padding: 0px;
+	font-size: 16px;
+}
+
+button:focus {
+	outline: none;
+}
+
+input {
+	border: none;
+	font-size: 1rem;
+}
+
+input:focus {
+	outline: none;
+}
+
+label {
+	display: block;
+	font: 1rem;
+}
+
+/* responsive */
 @media only screen and (max-width: 480px) {
 	.main {
 		width: 100%;
@@ -42,28 +60,6 @@ button:focus {
 	}
 }
 
-.item-dialog {
-	position: fixed;
-	top: 0px;
-	width: 100%;
-	height: 100vh;
-	background: white;
-}
-
-.fab-add {
-	border: 1px solid var(--primary);
-	border-radius: 50%;
-	padding: 0px;
-	height: 40px;
-	width: 40px;
-	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-		0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-	background-color: var(--primary);
-	color: white;
-	position: fixed;
-	right: 50%;
-	bottom: 20px;
-}
 
 .vh-100 {
 	height: 100vh;
@@ -124,60 +120,47 @@ button:focus {
 .primary-font {
 	color: var(--primary);
 }
+
 .black-font {
 	color: black;
 }
-/* loading waiting ball */
-.bounce-ball {
-	align-self: flex-end;
-	animation-duration: 2s;
-	animation-iteration-count: infinite;
-	background-color: #f44336;
-	height: 200px;
-	margin: 0 auto 0 auto;
-	transform-origin: bottom;
-	width: 200px;
-	border-radius: 50%;
-}
-.bounce-6 {
-	animation-name: bounce-6;
-	animation-timing-function: ease;
-}
-@keyframes bounce-6 {
-	0% {
-		transform: scale(1, 1) translateY(0);
-		background-color: #ffa600ed;
-	}
-	10% {
-		transform: scale(1.1, 0.9) translateY(0);
-		background-color: #d96704;
-	}
-	30% {
-		transform: scale(0.9, 1.1) translateY(-100px);
-		background-color: #f0ede8;
-	}
-	50% {
-		transform: scale(1.05, 0.95) translateY(0);
-		background-color: #90bdc2;
-	}
-	57% {
-		transform: scale(1, 1) translateY(-7px);
-		background-color: #2a5865;
-	}
-	64% {
-		transform: scale(1, 1) translateY(0);
-		background-color: #2a5865;
-	}
-	100% {
-		transform: scale(1, 1) translateY(0);
-		background-color: #2a5865;
-	}
-}
+
 .shadow {
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
 		0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
 
+.form-dialog {
+	width: 90%;
+	margin: 2rem auto;
+}
+
+/* Floating Add Button Style */
+.fab-add {
+	border: 1px solid var(--primary);
+	border-radius: 50%;
+	padding: 0px;
+	height: 40px;
+	width: 40px;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+		0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+	background-color: var(--primary);
+	color: white;
+	position: fixed;
+	right: 50%;
+	bottom: 20px;
+}
+
+/* Item Dialog style */
+.item-dialog {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	height: 100vh;
+	background: white;
+}
+
+/* Item Card Style  */
 .item-card {
   margin: 5px auto;
 	width: 98%;
@@ -212,4 +195,54 @@ button:focus {
 }
 .item-card .card-text-wrapper {
   padding: 0.25em;
+}
+
+
+/* loading waiting ball */
+.bounce-ball {
+	align-self: flex-end;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	background-color: #f44336;
+	height: 200px;
+	margin: 0 auto 0 auto;
+	transform-origin: bottom;
+	width: 200px;
+	border-radius: 50%;
+}
+
+.bounce-6 {
+	animation-name: bounce-6;
+	animation-timing-function: ease;
+}
+
+@keyframes bounce-6 {
+	0% {
+		transform: scale(1, 1) translateY(0);
+		background-color: #ffa600ed;
+	}
+	10% {
+		transform: scale(1.1, 0.9) translateY(0);
+		background-color: #d96704;
+	}
+	30% {
+		transform: scale(0.9, 1.1) translateY(-100px);
+		background-color: #f0ede8;
+	}
+	50% {
+		transform: scale(1.05, 0.95) translateY(0);
+		background-color: #90bdc2;
+	}
+	57% {
+		transform: scale(1, 1) translateY(-7px);
+		background-color: #2a5865;
+	}
+	64% {
+		transform: scale(1, 1) translateY(0);
+		background-color: #2a5865;
+	}
+	100% {
+		transform: scale(1, 1) translateY(0);
+		background-color: #2a5865;
+	}
 }

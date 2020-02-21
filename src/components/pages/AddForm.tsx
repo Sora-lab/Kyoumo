@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 
-// Item data type 
-import { Item } from '../ItemList/ItemList';
+// interface
+import { Item } from '../../models/ToDoItem';
 
-// CURD API 
-import { addItem, updateIteam } from '../../API/CRUD';
-
-// utility functions
-import { setProperty } from '../../utilities/Object';
-
-interface Props {}
+interface Props { }
 
 interface State {
-  itemData: Item
+  itemData: Item;
 }
 export class AddForm extends Component<Props, State> {
   constructor(props: any) {
@@ -20,46 +14,66 @@ export class AddForm extends Component<Props, State> {
     this.state = {
       itemData:
       {
-        title: 'New task/event/reminder/routine'
+        title: 'New task / event / reminder / routine',
+        start: null,
+        end: null
       }
     }
   }
-  componentDidMount(){
+
+  today = new Date()
+  todayYear = this.today.getFullYear();
+  todayMonth = this.today.getMonth() < 10 ? '0' + this.today.getMonth() : this.today.getMonth();
+  todayDate = this.today.getDate() < 10 ? '0' + this.today.getDate() : this.today.getDate();
+  todayString = this.todayYear.toString()
+    + '-' + this.todayMonth.toString() + '-' + this.todayDate.toString();
+
+  dateString(date: number) {
+    const today = new Date()
+    const todayYear = this.today.getFullYear();
+    const todayMonth = this.today.getMonth() < 10 ?
+      '0' + this.today.getMonth() : this.today.getMonth();
+    const todayDate = this.today.getDate() < 10 ?
+      '0' + this.today.getDate() : this.today.getDate();
+    return this.todayYear.toString()
+      + '-' + this.todayMonth.toString() + '-' + this.todayDate.toString();
+  }
+
+  componentDidMount() {
     console.log("addForm componentDidMount")
   }
-  componentDidUpdate(prevProps:any){
+  componentDidUpdate(prevProps: any) {
     console.log("addForm componentDidUpdate")
   }
-  componentWillMount(){
+  componentWillMount() {
     console.log("addForm componentWillMount")
   }
 
-  saveItem(e: any) {
-    // e.preventDefault()
-    // console.log(document.forms.item(0));
-    const formEl = document.forms.item(0);
-    const formData = formEl && new FormData(formEl);
-    const newItem: Item = { title: '' }
-    if (formData !== null) {
-      for (const pair of formData.entries()) {
-        // console.log(pair[0] + ', ' + pair[1]);
-        const key = pair[0] as keyof Item;
-        const value = pair[1] as string;
-        setProperty(newItem, key, value)
-      }
-    }
-    // console.log(newItem)
-    // addItem(newItem);
-    updateIteam("foo")
-    //clear the form
-    formEl?.reset();
+  handleDateOnSelect(value: any) {
+    console.log(value.target.value)
+    let state = { ...this.state.itemData };
+    state.start = Date.parse(value.target.value);
+    this.setState({ itemData: state })
   }
-
   render() {
     return (
-      <form name="itemform" className="vh-100">
-        <input type="text" id="title" name="title" required minLength={4} placeholder={this.state.itemData.title} />
-      </form>
+      <div className="form-dialog vh-100">
+        <form name="itemform">
+          <input type="text" id="title" name="title"
+            style={{ height: '2rem', padding: '0.5rem', width: '80%', borderBottom: '1px solid #90bdc2' }}
+            required minLength={4}
+            placeholder={this.state.itemData.title}
+          />
+          <div style={{ padding: '1rem' }}>
+            <label htmlFor="start">Start:</label>
+            <input type="date" id="start" name="trip-start"
+              value={this.todayString}
+              min="2018-01-01" max="2200-12-31"
+              onChange={(e) => this.handleDateOnSelect(e)}
+            />
+          </div>
+        </form>
+      </div>
     )
   }
 }

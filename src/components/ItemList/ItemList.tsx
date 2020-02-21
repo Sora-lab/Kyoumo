@@ -7,20 +7,20 @@ import 'firebase/firestore';
 // components 
 import { ItemCard } from './ItemCard';
 
+// interface
+import {Item} from '../../models/ToDoItem';
 
-export interface Item {
-  title: string;
-  type?: string;
-  start?: number;
-  end?: number;
-  note?: string;
-}
 interface State {
   itemArray: Array<Item> | undefined;
+  todayItems: Array<Item> | undefined;
   isLoading: boolean;
 }
+
 interface Props {
-  itemArray: Array<Item> | undefined;
+  itemObj: {
+    itemArray: Array<Item> | undefined,
+    todayItems: Array<Item> | undefined,
+  }
   isLoading: boolean;
 }
 
@@ -28,18 +28,19 @@ class ItemList extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      itemArray: this.props.itemArray || undefined,
+      itemArray: this.props.itemObj?.itemArray || undefined,
+      todayItems: this.props.itemObj?.todayItems || undefined,
       isLoading: false,
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log("ItemList componentDidMount")
   }
-  componentDidUpdate(prevProps:any){
+  componentDidUpdate(prevProps: any) {
     console.log("ItemList componentDidUpdate")
   }
-  componentWillMount(){
+  componentWillMount() {
     console.log("ItemList componentWillMount")
   }
 
@@ -55,12 +56,31 @@ class ItemList extends Component<Props, State> {
         </>)
     } else {
       return (
-        <div id='item-list'>{this.props.itemArray?.map((item: any, index) => {
-          return (
-            <ItemCard key={index} item={item} />
-          )
-        })}
-        </div>
+        <>
+          <div id='item-list'>{
+            this.props.itemObj.itemArray?.map((item: any, index) => {
+              return (
+                <ItemCard key={index} item={item} />
+              )
+            })}
+          </div>
+          <div
+            style={{
+              borderTop: '1px solid #f0ede8',
+              borderBottom: '1px solid #f0ede8',
+              textAlign: 'center', padding: '0.5rem'
+            }}
+          >
+            Today
+          </div>
+          <div id='item-list'>
+            {this.props.itemObj.todayItems?.map((item: any, index) => {
+              return (
+                <ItemCard key={index} item={item} />
+              )
+            })}
+          </div>
+        </>
       );
     }
   }
