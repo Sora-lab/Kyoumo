@@ -150,6 +150,30 @@ label {
 	right: 50%;
 	bottom: 20px;
 }
+/*container*/
+.container-body {
+	height: auto;
+}
+/* slide out side nav */
+.side-nav {
+	height: auto;
+}
+/* Item List Style */
+.item-list {
+	display: flex;
+	align-items: stretch;
+}
+
+.item-list-col-date{
+	padding: 10px;
+	width: 50px;
+	display: inline-block;
+}
+
+.item-list-col-items {
+	display: inline-block;
+	width: calc(100% - 100px);
+}
 
 /* Item Dialog style */
 .item-dialog {
@@ -163,7 +187,7 @@ label {
 /* Item Card Style  */
 .item-card {
   margin: 5px auto;
-	width: 98%;
+	/* width: 98%; */
 	border-radius: 4px;
 	display: flex;
 	flex-direction: column;

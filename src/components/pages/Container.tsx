@@ -23,10 +23,10 @@ import { AppBar } from '../AppBar/AppBar';
 const newAddForm = new AddForm('foo');
 
 // utilities 
-import {setProperty} from '../../utilities/Object';
+import { setProperty } from '../../utilities/Object';
 
 //CURD API 
-import {updateIteam} from '../../API/CRUD'
+import { updateIteam } from '../../API/CRUD'
 
 // interface 
 // TODO: I should import this later 
@@ -75,12 +75,12 @@ class Container extends Component<any, any> {
     .where('end', '==', null);
 
   componentDidMount() {
-    
-    let itemObj: {itemArray: Array<Item>; todayItems: Array<Item> }= {
+
+    let itemObj: { itemArray: Array<Item>; todayItems: Array<Item> } = {
       itemArray: [],
       todayItems: []
     };
-    
+
     Promise.all(
       [this.queryAnyDay.get(), this.queryToday.get()]
     ).then((querySnapshots: any) => {
@@ -93,107 +93,110 @@ class Container extends Component<any, any> {
         itemObj.todayItems.push(ele.data() as Item);
       });
       console.log(itemObj)
-    this.setState({ itemObj: itemObj, itemIsLoading: false });
-  }).catch(function(error) {
-    console.log('Error getting document:', error);
-  });
-}
-
-/**
- * set layout state to addForm
- */
-showAddForm() {
-  this.setState({ layout: Layout.add })
-}
-
-/**
- *  set layout state to default
- */
-closeForm() {
-  this.setState({ layout: Layout.default })
-}
-
-/**
- * set appropriate onclick functions for left icon on appbar
- * as a prop depending on layout state
- */
-leftIconOnClick() {
-  if (this.state.layout === Layout.add || this.state.layout === Layout.edit) {
-    this.closeForm();
-  } else {
-    // open the menu
+      this.setState({ itemObj: itemObj, itemIsLoading: false });
+    }).catch(function (error) {
+      console.log('Error getting document:', error);
+    });
   }
-}
 
-/**
- * set appropriate onclick functions for right icon on appbar
- * as a prop depending on layout state
- */
-rightIconsOnClick() {
-  if (this.state.layout === Layout.edit || this.state.layout === Layout.add) {
-    const formEl = document.forms.item(0);
-    const formData = formEl && new FormData(formEl);
-    let newItem: Item = { title: '', start: null, end: null }
-    if (formData !== null) {
-      for (const pair of formData.entries()) {
-        // console.log(pair[0] + ', ' + pair[1]);
-        const key = pair[0] as keyof Item;
-        const value = pair[1] as string;
-        setProperty(newItem, key, value)
-      }
+  /**
+   * set layout state to addForm
+   */
+  showAddForm() {
+    this.setState({ layout: Layout.add })
+  }
+
+  /**
+   *  set layout state to default
+   */
+  closeForm() {
+    this.setState({ layout: Layout.default })
+  }
+
+  /**
+   * set appropriate onclick functions for left icon on appbar
+   * as a prop depending on layout state
+   */
+  leftIconOnClick() {
+    if (this.state.layout === Layout.add || this.state.layout === Layout.edit) {
+      this.closeForm();
+    } else {
+      // open the menu
     }
-    console.log(newItem)
-    updateIteam('foo')
-    // newAddForm.saveItem('foo') // THIS IS A BIT HACKY... 
-     formEl?.reset();
+  }
+
+  /**
+   * set appropriate onclick functions for right icon on appbar
+   * as a prop depending on layout state
+   */
+  rightIconsOnClick(e: any, action: string): void {
+    if (this.state.layout === Layout.edit || this.state.layout === Layout.add) {
+      const formEl = document.forms.item(0);
+      const formData = formEl && new FormData(formEl);
+      let newItem: { [key: string]: FormDataEntryValue | null } = {}
+      if (formData !== null) {
+        for (const [key, value] of formData.entries()) {
+          console.log(key + ', ' + value);
+          // const key = pair[0] as keyof Item;
+          // const value = pair[1] as string;
+          setProperty(newItem, key, value)
+        }
+      }
+      console.log("newItem", newItem)
+
+      updateIteam('foo')
+      // newAddForm.saveItem('foo') // THIS IS A BIT HACKY... 
+      formEl?.reset();
+      return (
+        this.closeForm()
+      )
+    } else if (this.state.layout === Layout.default) {
+      // do other things
+    }
+  }
+
+  /**
+   * set appropriate onclick functions for far right icon on appbar
+   * as a prop depending on layout state
+   */
+  farRightIconsOnClick(e: any, action: string) {
+    if (this.state.layout === Layout.edit || this.state.layout === Layout.add) {
+      return (this.closeForm)
+    } else if (this.state.layout === Layout.default) {
+      // do other things
+    }
+  }
+
+  //TODO: mount and unmount AddForm 
+  render() {
+    console.log("Container", this.state.itemArray)
     return (
-      this.closeForm()
-    )
-  } else if (this.state.layout === Layout.default) {
-    // do other things
-  }
-}
-
-/**
- * set appropriate onclick functions for far right icon on appbar
- * as a prop depending on layout state
- */
-farRightIconsOnClick() {
-  if (this.state.layout === Layout.edit || this.state.layout === Layout.add) {
-    return (this.closeForm)
-  } else if (this.state.layout === Layout.default) {
-    // do other things
-  }
-}
-
-
-render() {
-  console.log("Container", this.state.itemArray)
-  return (
-    <div id="container">
-      <AppBar
-        layout={this.state.layout}
-        leftIconOnClick={this.leftIconOnClick.bind(this)}
-        rightIconsOnClick={this.rightIconsOnClick.bind(this)}
-        farRightIconsOnClick={this.farRightIconsOnClick.bind(this)}
-      />
-      <div style={this.state.layout === Layout.default ? { display: "block" } : { display: 'none' }}>
-        <ItemList
-          isLoading={this.state.itemIsLoading}
-          itemObj={this.state.itemObj}
+      <div id="container">
+        <AppBar
+          layout={this.state.layout}
+          leftIconOnClick={this.leftIconOnClick.bind(this)}
+          rightIconsOnClick={this.rightIconsOnClick.bind(this)}
+          farRightIconsOnClick={this.farRightIconsOnClick.bind(this)}
         />
+        <div id='sid-nav' className='side-nav'>
+          <button onClick={() => firebase.auth().signOut()}>log out</button>
+        </div>
+        <div className="container-body" style={this.state.layout === Layout.default ? { display: "block" } : { display: 'none' }}>
+          <ItemList
+            isLoading={this.state.itemIsLoading}
+            itemObj={this.state.itemObj}
+          />
+        </div>
+        <div style={this.state.layout === Layout.add ? { display: "block" } : { display: 'none' }}>
+          <AddForm />
+        </div>
+        <div style={this.state.layout === Layout.edit ? { display: "block" } : { display: 'none' }}>edit form</div>
+        <footer>
+          <button className="fab-add" onClick={() => this.showAddForm()}><i className="material-icons">add</i></button>
+        </footer>
       </div>
-      <div style={this.state.layout === Layout.add ? { display: "block" } : { display: 'none' }}>
-        <AddForm />
-      </div>
-      <div style={this.state.layout === Layout.edit ? { display: "block" } : { display: 'none' }}>edit form</div>
-      <footer>
-        <button className="fab-add" onClick={() => this.showAddForm()}><i className="material-icons">add</i></button>
-        <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
-      </footer>
-    </div>
-  );
-}
+    );
+  }
 
 }
 

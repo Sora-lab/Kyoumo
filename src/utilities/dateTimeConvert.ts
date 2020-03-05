@@ -43,7 +43,7 @@ export function convertToDisplayDate(param: number): string {
   return date.toLocaleDateString(undefined, options)
 }
 
-export function convertToDateInput(date: any): string {
+export function toDateInputString(date: any): string {
   const today = new Date()
   const todayYear = today.getFullYear();
   const todayMonth = today.getMonth() < 10 ? '0' + today.getMonth() : today.getMonth();
@@ -51,3 +51,5 @@ export function convertToDateInput(date: any): string {
   return todayYear.toString()
     + '-' + todayMonth.toString() + '-' + todayDate.toString();
 }
+
+

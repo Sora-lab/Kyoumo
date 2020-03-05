@@ -9,8 +9,8 @@ import {Layout} from '../pages/Container';
 interface Props {
   layout: Layout;
   leftIconOnClick: (e?: any) => void;
-  rightIconsOnClick: (e?: any) => void;
-  farRightIconsOnClick: (e?: any) => void;
+  rightIconsOnClick: (e?: any, action:string) => void;
+  farRightIconsOnClick: (e?: any, action:string) => void;
 }
 
 
@@ -43,7 +43,7 @@ export function AppBar(props: Props) {
   // trigger create function from CRUD
   // and close the form
   const formToolBar = (
-    <ActionButton colorClass="black" text="SAVE" onClick={(e: any) => props.rightIconsOnClick(e)} />
+    <ActionButton colorClass="black" text="SAVE" onClick={(e: any) => props.rightIconsOnClick(e, 'save')} />
   );
   
 

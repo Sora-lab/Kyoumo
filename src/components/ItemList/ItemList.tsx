@@ -8,7 +8,7 @@ import 'firebase/firestore';
 import { ItemCard } from './ItemCard';
 
 // interface
-import {Item} from '../../models/ToDoItem';
+import { Item } from '../../models/ToDoItem';
 
 interface State {
   itemArray: Array<Item> | undefined;
@@ -25,6 +25,12 @@ interface Props {
 }
 
 class ItemList extends Component<Props, State> {
+  
+  today = new Date();
+  todayDate = this.today.getDate();
+  tomorrow = this.today.setDate(this.todayDate + 1);
+  tomorrowDate = this.today.getDate()
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -57,28 +63,41 @@ class ItemList extends Component<Props, State> {
     } else {
       return (
         <>
-          <div id='item-list'>{
-            this.props.itemObj.itemArray?.map((item: any, index) => {
-              return (
-                <ItemCard key={index} item={item} />
-              )
-            })}
+          <div className='item-list'>
+            <div className='item-list-col-date'>
+              <span>No Dates</span>
+            </div>
+            <div className='item-list-col-items'>
+              {this.props.itemObj.itemArray?.map((item: any, index) => {
+                return (
+                  <ItemCard key={index} item={item} />
+                )
+              })}
+            </div>
           </div>
-          <div
-            style={{
-              borderTop: '1px solid #f0ede8',
-              borderBottom: '1px solid #f0ede8',
-              textAlign: 'center', padding: '0.5rem'
-            }}
-          >
-            Today
+          <div className='item-list'>
+          <div className='item-list-col-date'>
+            <span>{this.todayDate}</span>
           </div>
-          <div id='item-list'>
+          <div className='item-list-col-items'>
             {this.props.itemObj.todayItems?.map((item: any, index) => {
               return (
                 <ItemCard key={index} item={item} />
               )
             })}
+          </div>
+          </div>
+          <div className='item-list'>
+          <div className='item-list-col-date'>
+            <span>{this.tomorrowDate}</span>
+          </div>
+          <div className='item-list-col-items'>
+            {this.props.itemObj.todayItems?.map((item: any, index) => {
+              return (
+                <ItemCard key={index} item={item} />
+              )
+            })}
+          </div>
           </div>
         </>
       );

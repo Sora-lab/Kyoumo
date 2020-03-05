@@ -62,6 +62,7 @@ export class ItemCard extends Component<any, State> {
         <div className="card-text-wrapper">
           <div className="card-title">
             {this.props.item.title}
+            <IconButton inconName='create' colorClass='primary-font' style={this.floatRight} onClick={this.edit.bind(this)}/> 
           </div>
           <div className="card-subtext">
             {/* {this.props.item.start ? convertToDisplayDate(this.props.item.start) : null} 
@@ -69,7 +70,6 @@ export class ItemCard extends Component<any, State> {
             {this.datesDisplay()}
           </div>
           <div className="card-more" style={this.more()}>{this.props.item.note}
-            <IconButton inconName='create' colorClass='primary-font' style={this.floatRight} onClick={this.edit.bind(this)}/> 
             <ActionButton text='Mark complete' style={this.floatRight} colorClass='black-font' onClick={this.markComplete.bind(this)} />
           </div>
         </div>
